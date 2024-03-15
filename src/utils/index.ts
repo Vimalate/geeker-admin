@@ -323,7 +323,6 @@ export function processRoutes(menuItems: Menu.MenuOptions[], parentPath = ""): M
       ...item,
       path: fullPath
     };
-
     if (children && children.length) {
       processedItem.children = processRoutes(children, fullPath);
     }

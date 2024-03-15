@@ -72,7 +72,7 @@ const initTabs = () => {
         close: !item.meta.isAffix,
         isKeepAlive: item.meta.isKeepAlive
       };
-      tabStore.addTabs(tabsParams);
+      tabStore.addTabs(tabsParams as any);
     }
   });
 };
