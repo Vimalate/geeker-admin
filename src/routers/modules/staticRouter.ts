@@ -35,7 +35,7 @@ export const staticRouter: RouteRecordRaw[] = [
 ];
 
 /**
- * 位于侧边菜单的路由
+ * 位于侧边菜单的静态路由
  */
 export const staticMenu = [
   {

@@ -23,7 +23,7 @@ export const useTable = (
       // 当前页数
       pageNum: 1,
       // 每页显示条数
-      pageSize: 10,
+      pageSize: 5,
       // 总条数
       total: 0
     },
@@ -64,7 +64,7 @@ export const useTable = (
       state.tableData = isPageable ? data.list : data;
       // 解构后台返回的分页数据 (如果有分页更新分页信息)
       if (isPageable) {
-        const { pageNum, pageSize, total } = data;
+        const { pageNum = state.pageable.pageNum, pageSize = state.pageable.pageSize, total } = data;
         updatePageable({ pageNum, pageSize, total });
       }
     } catch (error) {
