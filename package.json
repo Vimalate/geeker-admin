@@ -92,8 +92,6 @@
     "stylelint-config-standard": "^36.0.0",
     "stylelint-config-standard-scss": "^13.0.0",
     "typescript": "^5.3.3",
-    "unplugin-auto-import": "^0.17.5",
-    "unplugin-vue-components": "^0.26.0",
     "unplugin-vue-setup-extend-plus": "^1.0.1",
     "vite": "^5.1.4",
     "vite-plugin-compression": "^0.5.1",

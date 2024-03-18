@@ -75,7 +75,8 @@ const columns = reactive<ColumnProps<RolePageVO>[]>([
     render: scope => {
       return <el-tag type={scope.row.status ? "success" : "danger"}>{scope.row.status ? "启用" : "禁用"}</el-tag>;
     }
-  }
+  },
+  { prop: "operation", label: "操作", fixed: "right", width: 200 }
 ]);
 
 const dataCallback = (data: any) => {

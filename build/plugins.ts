@@ -9,9 +9,9 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import eslintPlugin from "vite-plugin-eslint";
 import viteCompression from "vite-plugin-compression";
 import vueSetupExtend from "unplugin-vue-setup-extend-plus/vite";
-import AutoImport from "unplugin-auto-import/vite";
-import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+// import AutoImport from "unplugin-auto-import/vite";
+// import Components from "unplugin-vue-components/vite";
+// import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
 /**
  * 创建 vite 插件
@@ -29,12 +29,12 @@ export const createVitePlugins = (viteEnv: ViteEnv): (PluginOption | PluginOptio
     vueSetupExtend({}),
     // 创建打包压缩配置
     createCompression(viteEnv),
-    AutoImport({
-      resolvers: [ElementPlusResolver()]
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()]
-    }),
+    // AutoImport({
+    //   resolvers: [ElementPlusResolver()]
+    // }),
+    // Components({
+    //   resolvers: [ElementPlusResolver()]
+    // }),
     // 注入变量到 html 文件
     createHtmlPlugin({
       minify: true,
