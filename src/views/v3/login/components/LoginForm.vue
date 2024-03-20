@@ -31,17 +31,21 @@
       </el-form-item>
       <el-form-item prop="captchaCode">
         <div class="flex-y-center w-full">
-          <svg-icon icon-class="captcha" class="mx-2" />
           <el-input
             v-model="loginForm.captchaCode"
             auto-complete="off"
             size="large"
             class="flex-1"
             placeholder="请输入验证码"
-            @keyup.enter="handleLogin"
-          />
-
-          <el-image @click="getCaptcha" :src="captchaBase64" class="rounded-tr-md rounded-br-md cursor-pointer h-[48px]" />
+            @keyup.enter="handleLogin(loginFormRef)"
+          >
+            <template #prefix>
+              <SvgIcon name="captcha" class="mx-2" />
+            </template>
+            <template #suffix>
+              <el-image @click="getCaptcha" :src="captchaBase64" class="rounded-tr-md rounded-br-md cursor-pointer h-[48px]" />
+            </template>
+          </el-input>
         </div>
       </el-form-item>
     </el-form>
@@ -60,6 +64,7 @@ import { useUserStore } from "@/stores/modules/user";
 import { useTabsStore } from "@/stores/modules/tabs";
 import { useKeepAliveStore } from "@/stores/modules/keepAlive";
 import { initDynamicRouter } from "@/routers/modules/dynamicRouter";
+import SvgIcon from "@/components/SvgIcon/index.vue";
 
 const loginForm = ref<LoginData>({
   username: "admin",
@@ -159,13 +164,26 @@ onMounted(() => {
   }
   .login-btn {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     margin-top: 40px;
     white-space: nowrap;
     .el-button {
       width: 185px;
     }
+  }
+}
+.mx-2 {
+  width: 14px !important;
+  height: 14px !important;
+  margin-right: 5px;
+}
+.flex-y-center {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  .el-image {
+    cursor: pointer;
   }
 }
 </style>

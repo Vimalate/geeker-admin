@@ -24,12 +24,9 @@
 </template>
 
 <script setup name="baseTable" lang="ts">
-import { ref, watch, onMounted, computed, reactive, toRefs } from "vue";
-// import http from "@/api";
-// import { PORT3 } from "@/api/config/servicePort";
+import { watch, computed, reactive } from "vue";
 import { ElMessage } from "element-plus";
 export interface ProTableProps {
-  // api?: string;
   api?: (params: any) => Promise<any>; // 请求表格数据的 api ==> 非必传;
   method?: string;
   property?: string; // 返回数据 data 的字段,正常为data:[]，某些情况后端返回如:data.list:[]
@@ -160,27 +157,6 @@ const loadList = () => {
       pageNum: state.tablePage,
       pageSize: state.tableLimit
     };
-    // http[props.method]<any>(PORT3 + `/roles/page`, params)
-    //   .then(res => {
-    //     if (props.property) {
-    //       state.tableData = res.data[props.property] || [];
-    //       state.tableCount = res.data.total || 0;
-    //     } else {
-    //       state.tableData = res.data || [];
-    //       state.tableCount = res.total || 0;
-    //     }
-    //     emit("update:data", state.tableData);
-    //     state.showEmpty = false;
-    //     // 判断如果总页数少于当前页的时候就重置当前页为1
-    //     if (state.tableCount / state.tableLimit + 1 < state.tablePage) {
-    //       state.tablePage = 1;
-    //       loadList();
-    //     }
-    //   })
-    //   .catch(error => {
-    //     state.showEmpty = false;
-    //     ElMessage.error(error || "服务器出错，请重新尝试");
-    //   });
     props
       .api(params)
       .then(res => {
@@ -224,7 +200,7 @@ init();
   flex-direction: column;
   width: 100%;
   height: 100%;
-  .el-table {
+  ::v-deep(.el-table) {
     flex: 1;
     overflow: auto;
     table {
