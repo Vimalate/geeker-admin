@@ -1,5 +1,30 @@
 <template>
   <div class="table">
+    <el-form>
+      <Grid :gap="[20, 0]" :cols="{ xs: 1, sm: 2, md: 3, lg: 4, xl: 4 }">
+        <GridItem>
+          <el-form-item label="角色名称">
+            <el-input v-model="params.keywords" placeholder="角色名称" />
+          </el-form-item>
+        </GridItem>
+
+        <GridItem>
+          <el-form-item label="角色名称">
+            <el-input v-model="params.keywords" placeholder="角色名称" />
+          </el-form-item>
+        </GridItem>
+        <GridItem>
+          <el-form-item label="角色名称">
+            <el-input v-model="params.keywords" placeholder="角色名称" />
+          </el-form-item>
+        </GridItem>
+        <GridItem>
+          <el-form-item label="角色名称">
+            <el-input v-model="params.keywords" placeholder="角色名称" />
+          </el-form-item>
+        </GridItem>
+      </Grid>
+    </el-form>
     <BaseTable
       :api="getRolePageApi"
       method="get"
@@ -23,9 +48,12 @@
 
 <script setup name="tableDemo" lang="ts">
 import { ref } from "vue";
-import BaseTable from "@/components/BaseTable/index.vue";
 import { getRolePageApi } from "@/api/modules/role";
 import { RoleQuery } from "@/api/modules/role/types";
+import BaseTable from "@/components/BaseTable/index.vue";
+import Grid from "@/components/Grid/index.vue";
+import GridItem from "@/components/Grid/components/GridItem.vue";
+
 const params = ref({ keywords: "" });
 const limit = ref(5);
 </script>
@@ -34,6 +62,7 @@ const limit = ref(5);
 .table {
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   padding: 20px;
