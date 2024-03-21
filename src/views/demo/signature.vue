@@ -28,11 +28,10 @@ import GridFormItem from "@/components/GridFormItem/index.vue";
 import { ref, reactive } from "vue";
 const params = reactive({ keywords: "", name: "" });
 
-const ruleFormRef = ref();
-
+const ruleFormRef = ref<InstanceType<typeof GridForm> | null>(null);
 const submitForm = () => {
   console.log(params);
-  ruleFormRef.value.validate(valid => {
+  ruleFormRef.value?.validate(valid => {
     if (valid) {
       console.log("submit!");
     } else {
@@ -44,7 +43,7 @@ const submitForm = () => {
 
 const resetForm = () => {
   console.log(params);
-  ruleFormRef.value.resetFields();
+  ruleFormRef.value?.resetFields();
 };
 </script>
 

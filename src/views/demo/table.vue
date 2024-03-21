@@ -25,14 +25,7 @@
         </GridItem>
       </Grid>
     </el-form>
-    <BaseTable
-      :api="getRolePageApi"
-      method="get"
-      property="list"
-      :params="params"
-      :page-sizes="[5, 10, 20, 50]"
-      v-model:limit="limit"
-    >
+    <BaseTable :api="getRolePageApi" property="list" :params="params" :page-sizes="[5, 10, 20, 50]" v-model:limit="limit">
       <el-table-column label="角色名称" prop="name" min-width="100" />
       <el-table-column label="角色编码" prop="code" min-width="150" />
 
@@ -47,7 +40,7 @@
 </template>
 
 <script setup name="tableDemo" lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { getRolePageApi } from "@/api/modules/role";
 import { RoleQuery } from "@/api/modules/role/types";
 import BaseTable from "@/components/BaseTable/index.vue";
@@ -56,6 +49,13 @@ import GridItem from "@/components/Grid/components/GridItem.vue";
 
 const params = ref({ keywords: "" });
 const limit = ref(5);
+
+watch(
+  () => limit.value,
+  val => {
+    console.log("limit", val);
+  }
+);
 </script>
 
 <style lang="scss" scoped>

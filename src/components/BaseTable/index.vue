@@ -130,7 +130,13 @@ watch(
   }
 );
 
-const emit = defineEmits(["update:page", "update:limit", "loadList", "update:data"]);
+// const emit = defineEmits(["update:page", "update:limit", "loadList", "update:data"]);
+const emit = defineEmits<{
+  "update:page": [value: number];
+  "update:limit": [value: number];
+  "update:data": [value: any[]];
+  loadList: [];
+}>();
 // 每页多少条
 const handleSizeChange = (val: number) => {
   state.tableLimit = val;
