@@ -19,12 +19,21 @@
     </GridForm>
     <el-button type="primary" @click="submitForm()"> Create </el-button>
     <el-button @click="resetForm()"> Reset </el-button>
+    <el-button @click="open()"> 弹框 </el-button>
+    <BaseDialog align-center height="100px" width="300px" v-model="dialogVisible" title="弹框">
+      <div v-for="item in 100" :key="item">内容{{ item }}</div>
+      <template #footer>
+        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确定</el-button>
+      </template>
+    </BaseDialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import GridForm from "@/components/GridForm/index.vue";
 import GridFormItem from "@/components/GridFormItem/index.vue";
+import BaseDialog from "@/components/BaseDialog/index.vue";
 import { ref, reactive } from "vue";
 const params = reactive({ keywords: "", name: "" });
 
@@ -44,6 +53,11 @@ const submitForm = () => {
 const resetForm = () => {
   console.log(params);
   ruleFormRef.value?.resetFields();
+};
+
+const dialogVisible = ref(false);
+const open = () => {
+  dialogVisible.value = true;
 };
 </script>
 

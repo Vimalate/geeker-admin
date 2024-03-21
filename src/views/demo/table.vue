@@ -7,7 +7,6 @@
             <el-input v-model="params.keywords" placeholder="角色名称" />
           </el-form-item>
         </GridItem>
-
         <GridItem>
           <el-form-item label="角色名称">
             <el-input v-model="params.keywords" placeholder="角色名称" />
@@ -28,7 +27,6 @@
     <BaseTable :api="getRolePageApi" property="list" :params="params" :page-sizes="[5, 10, 20, 50]" v-model:limit="limit">
       <el-table-column label="角色名称" prop="name" min-width="100" />
       <el-table-column label="角色编码" prop="code" min-width="150" />
-
       <el-table-column label="状态" align="center" min-width="100">
         <template #default="scope">
           <el-tag v-if="scope.row.status === 1" type="success">正常</el-tag>

@@ -247,18 +247,35 @@
 }
 
 /* el-dialog */
+// .el-dialog {
+//   padding: 0;
+//   .el-dialog__header {
+//     padding: 15px 20px;
+//     margin: 0;
+//     border-bottom: 1px solid var(--el-border-color-lighter);
+//     .el-dialog__title {
+//       font-size: 17px;
+//     }
+//   }
+//   .el-dialog__body,
+//   .el-dialog__footer {
+//     padding: 15px 20px;
+//   }
+// }
 .el-dialog {
-  padding: 0;
+  // max-height: 80vh !important;
   .el-dialog__header {
-    padding: 15px 20px;
-    margin: 0;
-    border-bottom: 1px solid var(--el-border-color-lighter);
-    .el-dialog__title {
-      font-size: 17px;
-    }
+    height: 54px;
+    padding: 0;
+    border-bottom: 1px solid var(--el-border-color);
   }
-  .el-dialog__body,
+  .el-dialog__body {
+    padding: 15px !important;
+  }
   .el-dialog__footer {
-    padding: 15px 20px;
+    border-top: 1px solid var(--el-border-color);
+  }
+  .el-dialog__headerbtn {
+    top: 0;
   }
 }
