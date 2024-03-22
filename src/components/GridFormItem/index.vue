@@ -8,17 +8,19 @@
   </GridItem>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="GridFormItem">
 import { ref, reactive, watch } from "vue";
 import GridItem from "@/components/Grid/components/GridItem.vue";
-import type { FormRules } from "element-plus";
+import type { FormItemRule } from "element-plus";
 const props = defineProps<{
-  rules?: string | any[];
+  rules?: string | FormItemRule[];
   label?: string;
 }>();
-interface RuleForm {
-  [key: string]: any;
-}
+
+type U = "required" | "number" | "integer" | "email" | "date" | "phone" | "special" | "identity" | "unifiedCode" | "url";
+export type RuleForm = {
+  [Prop in U]: FormItemRule;
+};
 const rule = ref<any[]>([]);
 const ruleObj = reactive<RuleForm>({
   required: {
@@ -45,7 +47,7 @@ const ruleObj = reactive<RuleForm>({
     message: "请输入正确的身份证号",
     trigger: "blur"
   },
-  unifiedcode: {
+  unifiedCode: {
     pattern: /^([0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}|[1-9]\d{14})$/,
     message: "请输入正确的统一社会信用代码",
     trigger: "blur"
@@ -62,11 +64,13 @@ watch(
   () => props.rules,
   val => {
     if (val) {
-      let data = val;
-      const arr: any[] = [];
-      if (typeof data === "string") {
+      let data: string[] | FormItemRule[] = [];
+      const arr: FormItemRule[] = [];
+      if (typeof val === "string") {
         // 当传入字符串的时候通过||转为数组
-        data = data.split("||");
+        data = val.split("||");
+      } else if (Array.isArray(val)) {
+        data = val;
       }
       data.forEach(item => {
         if (typeof item === "string" && ruleObj[item]) {
@@ -104,12 +108,11 @@ const addRules = item => {
 
 /**
  * 解构对象给另一个对象
- * @param {Oject} obj 赋值对象
- * @param {Oject} data 解构对象
+ * @param {Object} obj 赋值对象
+ * @param {Object} data 解构对象
  * @param {Array} arr 解构参数
  */
-const parseObj = (obj, data, arr) => {
-  // let obj = {}
+const parseObj = (obj: object, data: object, arr: string[]) => {
   arr.forEach(item => {
     data[item] ? (obj[item] = data[item]) : "";
   });

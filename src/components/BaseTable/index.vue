@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup name="baseTable" lang="ts">
+<script setup name="BaseTable" lang="ts">
 import { watch, computed, reactive } from "vue";
 import { ElMessage } from "element-plus";
 export interface ProTableProps {

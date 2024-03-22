@@ -1,13 +1,21 @@
 <template>
   <div class="main">
     <GridForm :model="params" ref="ruleFormRef">
-      <GridFormItem label="角色名称" rules="required" prop="name">
+      <GridFormItem
+        :span="2"
+        label="角色名称"
+        :rules="[
+          { required: true, message: 'Please input Activity name', trigger: 'blur' },
+          { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+        ]"
+        prop="name"
+      >
         <el-input v-model="params.name" placeholder="角色名称" />
       </GridFormItem>
-      <GridFormItem label="关键字" prop="keywords">
+      <GridFormItem rules="required" label="关键字" prop="keywords">
         <el-input v-model="params.keywords" />
       </GridFormItem>
-      <GridFormItem label="角色名称">
+      <GridFormItem label="角色名称" prop="keywords">
         <el-input v-model="params.keywords" placeholder="角色名称" />
       </GridFormItem>
       <GridFormItem label="角色名称">
@@ -20,7 +28,7 @@
     <el-button type="primary" @click="submitForm()"> Create </el-button>
     <el-button @click="resetForm()"> Reset </el-button>
     <el-button @click="open()"> 弹框 </el-button>
-    <BaseDialog align-center height="100px" width="300px" v-model="dialogVisible" title="弹框">
+    <BaseDialog align-center v-model="dialogVisible" title="弹框">
       <div v-for="item in 100" :key="item">内容{{ item }}</div>
       <template #footer>
         <el-button @click="dialogVisible = false">取消</el-button>

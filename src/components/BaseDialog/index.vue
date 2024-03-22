@@ -14,11 +14,9 @@
   >
     <template #header="{ close }">
       <div class="header-btn-box">
-        <div>
-          <slot name="title">
-            {{ title }}
-          </slot>
-        </div>
+        <slot name="title">
+          {{ title }}
+        </slot>
 
         <div class="header-btn">
           <i
@@ -42,7 +40,7 @@
   </el-dialog>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="BaseDialog">
 // import { ElScrollbar } from "element-plus";
 import { Close } from "@element-plus/icons-vue";
 import { computed, ref, unref, useSlots, watch, nextTick } from "vue";
