@@ -1,6 +1,6 @@
 <template>
   <div class="base-table">
-    <el-table ref="table" :data="state.tableData" :height="tableHeight" :border="border" v-bind="$attrs">
+    <el-table ref="tableRef" :data="state.tableData" :height="tableHeight" :border="border" v-bind="$attrs">
       <slot></slot>
       <template #empty>
         <span v-if="state.showEmpty"></span>
@@ -24,8 +24,8 @@
 </template>
 
 <script setup name="BaseTable" lang="ts">
-import { watch, computed, reactive } from "vue";
-import { ElMessage } from "element-plus";
+import { watch, computed, reactive, ref } from "vue";
+import { ElMessage, ElTable } from "element-plus";
 export interface ProTableProps {
   api?: (params: any) => Promise<any>; // 请求表格数据的 api ==> 非必传;
   method?: string;
@@ -73,6 +73,9 @@ const state = reactive<TableState>({
   tableData: [],
   showEmpty: true
 });
+
+// table 实例
+const tableRef = ref<InstanceType<typeof ElTable>>();
 
 const tableHeight = computed(() => {
   let h;
@@ -197,6 +200,11 @@ const init = () => {
 };
 
 init();
+
+defineExpose({
+  element: tableRef,
+  loadList
+});
 </script>
 
 <style lang="scss" scoped>

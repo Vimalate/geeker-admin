@@ -16,7 +16,7 @@
         <el-input v-model="params.keywords" />
       </GridFormItem>
       <GridFormItem label="数字" prop="num">
-        <el-input v-model="params.num" v-inputFilter.float="1" placeholder="请输入数字" />
+        <el-input v-model="params.num" v-inputFilter.float="2" placeholder="请输入数字" />
       </GridFormItem>
       <GridFormItem label="角色名称">
         <el-input v-model="params.keywords" placeholder="角色名称" />
