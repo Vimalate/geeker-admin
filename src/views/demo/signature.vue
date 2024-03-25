@@ -6,7 +6,7 @@
         label="角色名称"
         :rules="[
           { required: true, message: 'Please input Activity name', trigger: 'blur' },
-          { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+          { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: ['blur', 'change'] }
         ]"
         prop="name"
       >
@@ -15,8 +15,8 @@
       <GridFormItem rules="required" label="关键字" prop="keywords">
         <el-input v-model="params.keywords" />
       </GridFormItem>
-      <GridFormItem label="角色名称" prop="keywords">
-        <el-input v-model="params.keywords" placeholder="角色名称" />
+      <GridFormItem label="数字" prop="num">
+        <el-input v-model="params.num" v-inputFilter.float="2" placeholder="请输入数字" />
       </GridFormItem>
       <GridFormItem label="角色名称">
         <el-input v-model="params.keywords" placeholder="角色名称" />
@@ -27,6 +27,7 @@
     </GridForm>
     <el-button type="primary" @click="submitForm()"> Create </el-button>
     <el-button @click="resetForm()"> Reset </el-button>
+    <el-button @click="change"> 改变 </el-button>
     <el-button @click="open()"> 弹框 </el-button>
     <BaseDialog align-center v-model="dialogVisible" title="弹框">
       <div v-for="item in 100" :key="item">内容{{ item }}</div>
@@ -43,14 +44,14 @@ import GridForm from "@/components/GridForm/index.vue";
 import GridFormItem from "@/components/GridFormItem/index.vue";
 import BaseDialog from "@/components/BaseDialog/index.vue";
 import { ref, reactive } from "vue";
-const params = reactive({ keywords: "", name: "" });
+const params = reactive({ keywords: "", name: "", num: "" });
 
 const ruleFormRef = ref<InstanceType<typeof GridForm> | null>(null);
 const submitForm = () => {
   console.log(params);
   ruleFormRef.value?.validate(valid => {
     if (valid) {
-      console.log("submit!");
+      console.log("submit!", params);
     } else {
       console.log("error submit!");
       return false;
@@ -66,6 +67,9 @@ const resetForm = () => {
 const dialogVisible = ref(false);
 const open = () => {
   dialogVisible.value = true;
+};
+const change = () => {
+  console.log("change", params.num);
 };
 </script>
 

@@ -19,7 +19,7 @@ const props = defineProps<{
 
 type U = "required" | "number" | "integer" | "email" | "date" | "phone" | "special" | "identity" | "unifiedCode" | "url";
 export type RuleForm = {
-  [Prop in U]: FormItemRule;
+  [key in U]: FormItemRule;
 };
 const rule = ref<any[]>([]);
 const ruleObj = reactive<RuleForm>({
