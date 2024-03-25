@@ -1,17 +1,17 @@
 import type { Directive, DirectiveBinding, VNode } from "vue";
 
 // 数字
-function onlyNum(input) {
+function onlyNum(input: HTMLInputElement) {
   input.value = input.value.replace(/\D+/g, "");
 }
 // 整数(0+正整数)
-function onlyInt(input) {
+function onlyInt(input: HTMLInputElement) {
   let value = input.value;
   value = value.replace(/\D+/g, "");
   input.value = value ? Number(value).toString() : value; // 去掉开头多个0
 }
 // 正整数
-function onlyIntp(input) {
+function onlyIntp(input: HTMLInputElement) {
   if (!/^[1-9][0-9]*$/.test(input.value)) {
     let value = input.value.replace(/\D+/g, "");
     if (value && value.substring(0, 1) === "0") {
@@ -24,12 +24,12 @@ function onlyIntp(input) {
 }
 
 // 数字+小数点
-function onlyNumPoint(input) {
+function onlyNumPoint(input: HTMLInputElement) {
   input.value = input.value.replace(/[^\d.]/g, "");
 }
 
 // 浮点型
-function onlyFloat(input, n) {
+function onlyFloat(input: HTMLInputElement, n?: number | string) {
   let value = input.value;
   value = value.replace(/[^\d.]/g, "");
   value = value.replace(/^\./g, "");
@@ -46,16 +46,16 @@ function onlyFloat(input, n) {
   input.value = value;
 }
 // 字母
-function onlyAlp(input) {
+function onlyAlp(input: HTMLInputElement) {
   input.value = input.value.replace(/[^A-Za-z]/g, "");
 }
 // 数字+字母
-function onlyNumAlp(input) {
+function onlyNumAlp(input: HTMLInputElement) {
   input.value = input.value.replace(/[^A-Za-z0-9]/g, "");
 }
 
 // 四则运算+-*/()数字
-function onlyArith(input) {
+function onlyArith(input: HTMLInputElement) {
   let value = input.value;
   if (value) {
     input.value = value.split("").reduce((prev, cur) => {
@@ -73,7 +73,7 @@ interface VNodeType extends VNode {
 
 const inputFilter: Directive = {
   mounted(el: HTMLInputElement, binding: DirectiveBinding, vnode: VNodeType) {
-    const input = el.querySelector(".el-input__inner") || el.querySelector(".el-textarea__inner") || el;
+    const input: HTMLInputElement = el.querySelector(".el-input__inner") || el.querySelector(".el-textarea__inner") || el;
     input.addEventListener("compositionstart", function () {
       vnode.locking = true; // 解决中文输入双向绑定失效
     });
