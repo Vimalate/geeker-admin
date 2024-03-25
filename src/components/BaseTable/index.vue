@@ -4,7 +4,7 @@
       <slot></slot>
       <template #empty>
         <span v-if="state.showEmpty"></span>
-        <!-- <sh-empty v-else-if="!$slots.empty && empty"></sh-empty> -->
+        <Empty v-else-if="!$slots.empty && empty"></Empty>
         <slot name="empty" v-else></slot>
       </template>
     </el-table>
@@ -26,6 +26,7 @@
 <script setup name="BaseTable" lang="ts">
 import { watch, computed, reactive, ref } from "vue";
 import { ElMessage, ElTable } from "element-plus";
+import Empty from "@/components/Empty/index.vue";
 export interface ProTableProps {
   api?: (params: any) => Promise<any>; // 请求表格数据的 api ==> 非必传;
   method?: string;
@@ -186,7 +187,7 @@ const loadList = () => {
       })
       .catch(error => {
         state.showEmpty = false;
-        ElMessage.error(error || "服务器出错，请重新尝试");
+        // ElMessage.error(error || "服务器出错，请重新尝试");
       });
   } else {
     emit("loadList");

@@ -22,9 +22,21 @@
             <el-input v-model="params.keywords" placeholder="角色名称" />
           </el-form-item>
         </GridItem>
+        <GridItem>
+          <el-form-item>
+            <el-button @click="search">搜索</el-button>
+          </el-form-item>
+        </GridItem>
       </Grid>
     </el-form>
-    <BaseTable :api="getRolePageApi" property="list" :params="params" :page-sizes="[5, 10, 20, 50]" v-model:limit="limit">
+    <BaseTable
+      ref="tableRef"
+      :api="getRolePageApi"
+      property="list"
+      :params="params"
+      :page-sizes="[5, 10, 20, 50]"
+      v-model:limit="limit"
+    >
       <el-table-column label="角色名称" prop="name" min-width="100" />
       <el-table-column label="角色编码" prop="code" min-width="150" />
       <el-table-column label="状态" align="center" min-width="100">
@@ -47,13 +59,17 @@ import GridItem from "@/components/Grid/components/GridItem.vue";
 
 const params = ref({ keywords: "" });
 const limit = ref(5);
-
+const tableRef = ref<InstanceType<typeof BaseTable>>();
 watch(
   () => limit.value,
   val => {
     console.log("limit", val);
   }
 );
+
+const search = () => {
+  tableRef.value?.loadList();
+};
 </script>
 
 <style lang="scss" scoped>
