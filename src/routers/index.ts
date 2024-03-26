@@ -71,6 +71,12 @@ router.beforeEach(async (to, from, next) => {
     return next({ ...to, replace: true });
   }
 
+  // 7.判断是否有菜单权限--通过后台接口菜单列表判断，不再通过添加动态路由方式
+  const authObj = authStore.authRouterObjGet;
+  if (authObj[to.path]) {
+    console.log("isRouter", authObj[to.path], "path", to.path);
+    return next();
+  }
   // 7.存储 routerName 做按钮权限筛选
   authStore.setRouteName(to.name as string);
   // 8.正常访问页面

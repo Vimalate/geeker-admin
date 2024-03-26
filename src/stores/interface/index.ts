@@ -54,6 +54,7 @@ export interface AuthState {
   // };
   authButtonList: string[];
   authMenuList: Menu.MenuOptions[];
+  authRouterObj: { [key: string]: boolean };
 }
 
 /* KeepAliveState */

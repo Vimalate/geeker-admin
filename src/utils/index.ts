@@ -330,3 +330,27 @@ export function processRoutes(menuItems: Menu.MenuOptions[], parentPath = ""): M
     return processedItem;
   });
 }
+
+/**
+ * @description 递归遍历生成权限菜单对象
+ * @param {Array} menuList 所有菜单列表
+ */
+export const getResourceRouter = function (menuList: Menu.MenuOptions[]) {
+  let obj = {};
+  if (menuList && menuList.length) {
+    obj = getResourceSubRouter(menuList);
+  }
+  console.log("getResourceRouter", menuList, "obj", obj);
+  return obj;
+};
+export function getResourceSubRouter(list: Menu.MenuOptions[]) {
+  let obj = {};
+  list.forEach(items => {
+    const path = items.path.split("?")[0];
+    obj[path] = true;
+    if (items.children) {
+      obj = { ...obj, ...getResourceSubRouter(items.children) };
+    }
+  });
+  return obj;
+}

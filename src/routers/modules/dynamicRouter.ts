@@ -35,18 +35,19 @@ export const initDynamicRouter = async () => {
     console.log("flatMenuListGet", authStore.flatMenuListGet, "authMenuListGet", authStore.authMenuListGet);
 
     // 3.添加动态路由
-    authStore.flatMenuListGet.forEach(item => {
-      item.children && delete item.children;
-      item.component === "Layout" && delete item.component;
-      if (item.component && typeof item.component == "string") {
-        item.component = modules["/src/views/" + item.component + ".vue"];
-      }
-      if (item?.meta?.isFull) {
-        router.addRoute(item as unknown as RouteRecordRaw);
-      } else {
-        router.addRoute("layout", item as unknown as RouteRecordRaw);
-      }
-    });
+    // authStore.flatMenuListGet.forEach(item => {
+    //   item.children && delete item.children;
+    //   item.component === "Layout" && delete item.component;
+    //   if (item.component && typeof item.component == "string") {
+    //     item.component = modules["/src/views/" + item.component + ".vue"];
+    //   }
+    //   if (item?.meta?.isFull) {
+    //     // 全屏，不在布局组件下，如大屏
+    //     router.addRoute(item as unknown as RouteRecordRaw);
+    //   } else {
+    //     router.addRoute("layout", item as unknown as RouteRecordRaw);
+    //   }
+    // });
     console.log("动态路由", router.getRoutes());
     console.log("菜单权限列表", authStore.showMenuListGet);
   } catch (error) {

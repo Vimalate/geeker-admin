@@ -25,13 +25,49 @@ export const staticRouter: RouteRecordRaw[] = [
     // component: () => import("@/layouts/indexAsync.vue"),
     redirect: HOME_URL,
     children: [
-      // {
-      //   path: HOME_URL,
-      //   name: "home-index",
-      //   component: () => import("@/views/v3/home/index.vue")
-      // }
+      {
+        path: HOME_URL,
+        name: "home-index",
+        component: () => import("@/views/v3/home/index.vue"),
+        meta: {
+          title: "首页"
+        }
+      },
+      {
+        path: "/api/apifox",
+        name: "apifox",
+        component: () => import("@/views/v3/api/index.vue"),
+        meta: {
+          icon: "HomeFilled",
+          title: "apifox",
+          isLink: "",
+          isHide: false,
+          isFull: false,
+          isAffix: false,
+          isKeepAlive: true
+        }
+      },
+      {
+        path: "/component/table",
+        name: "tableDemo",
+        component: () => import("@/views/demo/table.vue"),
+        meta: {
+          icon: "",
+          title: "表格",
+          isLink: "",
+          isHide: false,
+          isFull: false,
+          isAffix: false,
+          isKeepAlive: false
+        }
+      }
     ]
   }
+  // {
+  //   path: "/api",
+  //   name: "api",
+  //   component: () => import("@/views/v3/api/index.vue")
+  // }
 ];
 
 /**

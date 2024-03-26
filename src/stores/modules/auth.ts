@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { AuthState } from "@/stores/interface";
 import { getAuthButtonListApi, getAuthMenuListApi } from "@/api/modules/login";
 import { getUserInfoApi, listRoutes } from "@/api/modules/auth";
-import { getFlatMenuList, getShowMenuList, getAllBreadcrumbList, processRoutes } from "@/utils";
+import { getFlatMenuList, getShowMenuList, getAllBreadcrumbList, processRoutes, getResourceRouter } from "@/utils";
 import { staticMenu } from "@/routers/modules/staticRouter";
 
 export const useAuthStore = defineStore({
@@ -12,6 +12,7 @@ export const useAuthStore = defineStore({
     authButtonList: [],
     // 菜单权限列表
     authMenuList: [],
+    authRouterObj: {}, // 路由权限对象
     // 当前页面的 router name，用来做按钮权限筛选
     routeName: ""
   }),
@@ -21,6 +22,7 @@ export const useAuthStore = defineStore({
     // 菜单权限列表 ==> 这里的菜单没有经过任何处理
     authMenuListGet: state => state.authMenuList,
     // 菜单权限列表 ==> 左侧菜单栏渲染，需要剔除 isHide == true
+    authRouterObjGet: state => state.authRouterObj,
     showMenuListGet: state => getShowMenuList(state.authMenuList),
     // 菜单权限列表 ==> 扁平化之后的一维数组菜单，主要用来添加动态路由
     flatMenuListGet: state => getFlatMenuList(state.authMenuList),
@@ -39,7 +41,8 @@ export const useAuthStore = defineStore({
       // const { data } = await getAuthMenuListApi();
       const { data } = await listRoutes();
       this.authMenuList = [...staticMenu, ...processRoutes(data)];
-      console.log("processRoutes", this.authMenuList);
+      this.authRouterObj = getResourceRouter(this.authMenuList);
+      console.log("processRoutes", this.authMenuList, "authRouterObj-----", this.authRouterObj);
     },
     // Set RouteName
     async setRouteName(name: string) {
