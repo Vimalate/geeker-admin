@@ -334,17 +334,18 @@ export function processRoutes(menuItems: Menu.MenuOptions[], parentPath = ""): M
 /**
  * @description 递归遍历生成权限菜单对象
  * @param {Array} menuList 所有菜单列表
+ * @returns {Object} 菜单权限对象
  */
-export const getResourceRouter = function (menuList: Menu.MenuOptions[]) {
-  let obj = {};
+export function getResourceRouter(menuList: Menu.MenuOptions[]) {
+  let obj: Record<string, boolean> = {};
   if (menuList && menuList.length) {
     obj = getResourceSubRouter(menuList);
   }
   console.log("getResourceRouter", menuList, "obj", obj);
   return obj;
-};
+}
 export function getResourceSubRouter(list: Menu.MenuOptions[]) {
-  let obj = {};
+  let obj: Record<string, boolean> = {};
   list.forEach(items => {
     const path = items.path.split("?")[0];
     obj[path] = true;

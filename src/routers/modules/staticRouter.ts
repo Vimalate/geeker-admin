@@ -60,6 +60,20 @@ export const staticRouter: RouteRecordRaw[] = [
           isAffix: false,
           isKeepAlive: false
         }
+      },
+      {
+        path: "/demo/print",
+        name: "demo-print",
+        component: () => import("@/views/demo/print/index.vue"),
+        meta: {
+          icon: "Menu",
+          title: "打印",
+          isLink: "",
+          isHide: false,
+          isFull: false,
+          isAffix: false,
+          isKeepAlive: false
+        }
       }
     ]
   }
@@ -87,6 +101,37 @@ export const staticMenu = [
       isAffix: true,
       isKeepAlive: true
     }
+  },
+  {
+    path: "/demo",
+    name: "Demo",
+    component: "Layout",
+    meta: {
+      icon: "MessageBox",
+      title: "Demo",
+      isLink: "",
+      isHide: false,
+      isFull: false,
+      isAffix: false,
+      isKeepAlive: true
+    },
+    redirect: "/demo/print",
+    children: [
+      {
+        path: "/demo/print",
+        name: "demo-print",
+        component: "demo/print/index",
+        meta: {
+          icon: "Menu",
+          title: "打印",
+          isLink: "",
+          isHide: false,
+          isFull: false,
+          isAffix: false,
+          isKeepAlive: false
+        }
+      }
+    ]
   }
 ];
 
