@@ -68,6 +68,9 @@ dependencies:
   vue-router:
     specifier: ^4.3.0
     version: 4.3.0(vue@3.4.21)
+  vue-slider-component:
+    specifier: 4.1.0-beta.7
+    version: 4.1.0-beta.7
   vuedraggable:
     specifier: ^4.1.0
     version: 4.1.0(vue@3.4.21)
@@ -8648,6 +8651,10 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.6.1
       vue: 3.4.21(typescript@5.3.3)
+    dev: false
+
+  /vue-slider-component@4.1.0-beta.7:
+    resolution: {integrity: sha512-Qb7K920ZG7PoQswoF6Ias+i3W2rd3k4fpk04JUl82kEUcN86Yg6et7bVSKWt/7VpQe8a5IT3BqCKSCOZ7AJgCA==}
     dev: false
 
   /vue-template-compiler@2.7.14:

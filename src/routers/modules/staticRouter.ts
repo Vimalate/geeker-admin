@@ -74,6 +74,48 @@ export const staticRouter: RouteRecordRaw[] = [
           isAffix: false,
           isKeepAlive: false
         }
+      },
+      {
+        path: "/system/role",
+        name: "role",
+        component: () => import("@/views/system/role/index.vue"),
+        meta: {
+          icon: "Menu",
+          title: "角色",
+          isLink: "",
+          isHide: false,
+          isFull: false,
+          isAffix: false,
+          isKeepAlive: true
+        }
+      },
+      {
+        path: "/component/signature",
+        name: "signature",
+        component: () => import("@/views/demo/signature.vue"),
+        meta: {
+          icon: "Menu",
+          title: "签名",
+          isLink: "",
+          isHide: false,
+          isFull: false,
+          isAffix: false,
+          isKeepAlive: true
+        }
+      },
+      {
+        path: "/component/dict-demo",
+        name: "dict",
+        component: () => import("@/views/demo/dict.vue"),
+        meta: {
+          icon: "Menu",
+          title: "字典",
+          isLink: "",
+          isHide: false,
+          isFull: false,
+          isAffix: false,
+          isKeepAlive: true
+        }
       }
     ]
   }

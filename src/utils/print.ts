@@ -2,7 +2,7 @@ const Print = function (this: any, dom: string | HTMLElement, options?: object) 
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const _this: any = this;
   options = options || {};
-  // @ts-expect-error: 做一些忽略
+  // @ts-expect-error: just need to some description
   if (!(this instanceof Print)) return new Print(dom, options);
   _this.conf = {
     styleStr: "",

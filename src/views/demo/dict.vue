@@ -32,10 +32,21 @@
       <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
       <el-button @click="resetForm('ruleForm')">重置</el-button>
     </el-form-item>
+    <div class="box">
+      <vue-slider v-model="value1" :process="process1"></vue-slider>
+      <vue-slider style="margin-top: 20px" v-model="value2" :process="process2"></vue-slider>
+      <el-row :gutter="30">
+        <el-col :span="8"><el-input-number v-model="value2[0]"></el-input-number></el-col>
+        <el-col :span="8"><el-input-number v-model="value2[1]"></el-input-number></el-col>
+        <el-col :span="8"><el-input-number v-model="value2[2]"></el-input-number></el-col>
+      </el-row>
+    </div>
   </el-form>
 </template>
 
 <script>
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/default.css";
 /**
  * 文件 tsconfig.js：
 开启允许JS
@@ -44,6 +55,10 @@
     }
  */
 export default {
+  components: {
+    VueSlider
+  },
+
   data() {
     return {
       ruleForm: {
@@ -67,7 +82,15 @@ export default {
         type: [{ type: "array", required: true, message: "请至少选择一个活动性质", trigger: "change" }],
         resource: [{ required: true, message: "请选择活动资源", trigger: "change" }],
         desc: [{ required: true, message: "请填写活动形式", trigger: "blur" }]
-      }
+      },
+      value1: 0,
+      process1: dotsPos => [[50, dotsPos[0]]],
+      value2: [10, 50, 80],
+      process2: dotsPos => [
+        [0, dotsPos[0], { backgroundColor: "red" }],
+        [dotsPos[0], dotsPos[1], { backgroundColor: "pink" }],
+        [dotsPos[1], dotsPos[2], { backgroundColor: "blue" }]
+      ]
     };
   },
   methods: {
